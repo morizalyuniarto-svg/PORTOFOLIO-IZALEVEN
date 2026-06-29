@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IZAL | Personal Statement</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display (Serif) & Plus Jakarta Sans (Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons for premium style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Configuration for exact colors matching ChatGPT Image Jun 30, 2026, 02_22_11 AM.png -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        moss: {
+                            DEFAULT: '#2C3729',
+                            light: '#3D4C39',
+                            dark: '#1C241A',
+                        },
+                        gold: {
+                            DEFAULT: '#CBB57B',
+                            light: '#DBCBA0',
+                            dark: '#B19A5D',
+                        },
+                        mint: {
+                            DEFAULT: '#C3C9C0',
+                            light: '#DCE1DB',
+                            dark: '#A5ABA1',
+                        },
+                        blush: {
+                            DEFAULT: '#E5DAD6',
+                            light: '#F2ECE9',
+                            dark: '#CDBCB6',
+                        },
+                        stone: {
+                            50: '#FDFBF7',
+                            100: '#F5F2EB',
+                            200: '#EAE5D9',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F5F2EB;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2C3729;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #CBB57B;
+        }
+
+        /* Subtle noise texture simulation */
+        .noise-bg {
+            background-color: #FDFBF7;
+            background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        /* Smooth reveal animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Golden Ring Spin */
+        @keyframes spin-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 25s linear infinite;
+        }
+
+        /* Canvas strokes */
+        #interactive-canvas {
+            touch-action: none;
+        }
+    </style>
+</head>
+<body class="noise-bg font-sans text-moss-dark antialiased selection:bg-gold/30 selection:text-moss-dark min-h-screen flex flex-col justify-between">
+
+    <!-- Navigation / Premium Header Bar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-stone-50/80 border-b border-mint/30 px-6 py-4 transition-all duration-300">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <span class="font-serif text-2xl font-bold tracking-wider text-moss">I Z A L</span>
+                <span class="h-4 w-[1px] bg-mint"></span>
+                <span class="text-xs uppercase tracking-[0.2em] font-medium text-moss/60 hidden sm:inline-block">Personal Statement</span>
+            </div>
+            
+            <!-- Quick controls and action buttons -->
+            <div class="flex items-center space-x-4">
+                <!-- Color Theme Quick Toggle Tooltip info -->
+                <div class="relative group hidden md:block">
+                    <button class="text-xs uppercase tracking-widest text-moss/60 hover:text-moss transition duration-200 flex items-center gap-1">
+                        <i class="fa-solid fa-circle-half-stroke text-gold"></i> Theme: Timeless
+                    </button>
+                    <div class="absolute right-0 top-full mt-2 hidden group-hover:block bg-stone-100 border border-mint/40 p-3 rounded-lg shadow-xl w-64 z-50">
+                        <p class="text-xs font-semibold text-moss mb-2">Original Color Palette</p>
+                        <p class="text-[10px] text-moss/50 mt-1">Accurate to ChatGPT Image Jun 30, 2026, 02_22_11 AM.png</p>
+                    </div>
+                </div>
+
+                <!-- Text-to-speech Trigger -->
+                <button onclick="toggleSpeech()" id="speech-btn" class="flex items-center space-x-2 bg-moss text-stone-50 hover:bg-gold hover:text-moss-dark px-4 py-2 rounded-full text-xs uppercase tracking-widest transition-all duration-300 shadow-md">
+                    <i class="fa-solid fa-volume-high" id="speaker-icon"></i>
+                    <span id="speaker-text">Listen to Statement</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow">
+        
+        <!-- Hero Section with layout inspired by ChatGPT Image Jun 30, 2026, 02_22_11 AM.png -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+            
+            <!-- Left Side: Large Titles & Statement Quote -->
+            <div class="lg:col-span-6 space-y-8 order-2 lg:order-1">
+                <div class="space-y-2">
+                    <p class="text-xs uppercase tracking-[0.3em] text-moss/60 font-medium">Speaking Project: Personal Statement</p>
+                    <h1 class="text-7xl md:text-8xl lg:text-9xl font-serif font-black text-moss tracking-[0.15em] leading-none my-2 hover:scale-[1.02] transition-transform duration-300 cursor-default">
+                        IZAL
+                    </h1>
+                    <p class="text-sm md:text-base uppercase tracking-[0.4em] text-gold-dark font-medium font-serif">
+                        ELEVATED & TIMELESS
+                    </p>
+                </div>
+
+                <!-- Block Quote Container -->
+                <div class="relative bg-stone-100/70 border border-mint/40 rounded-2xl p-6 sm:p-8 shadow-sm group hover:border-gold/60 transition-all duration-300">
+                    <span class="absolute -top-6 left-6 text-7xl font-serif text-gold/50 select-none group-hover:text-gold transition-colors duration-300">“</span>
+                    <p id="quote-text" class="text-lg sm:text-xl font-serif text-moss-light italic relative z-10 pl-2 pt-2 leading-relaxed">
+                        Turning ideas into impact through creativity, empathy, and technology.
+                    </p>
+                </div>
+
+                <!-- Interactive CTA Row -->
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="#timeline" class="bg-moss hover:bg-gold text-stone-50 hover:text-moss-dark px-6 py-3 rounded-xl text-sm font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 shadow-lg">
+                        <span>Explore Infographic Journey</span>
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <button onclick="openCanvasModal()" class="border-2 border-gold text-moss hover:bg-gold/10 px-6 py-3 rounded-xl text-sm font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2">
+                        <i class="fa-solid fa-palette text-gold"></i>
+                        <span>Draw on "My Canvas"</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Side: Stylized Portrait Composition with your real photo -->
+            <div class="lg:col-span-6 relative flex justify-center items-center order-1 lg:order-2 py-8">
+                <!-- Background Geometric Rings & Arches -->
+                <div class="absolute inset-0 flex justify-center items-center pointer-events-none scale-95 sm:scale-100">
+                    <!-- Concentric Dark Moss Green Circles/Arches matching background -->
+                    <div class="absolute w-[360px] h-[360px] md:w-[420px] md:h-[420px] rounded-full bg-moss/10 border-2 border-moss/20"></div>
+                    <div class="absolute w-[320px] h-[320px] md:w-[380px] md:h-[380px] rounded-full bg-[#2C3729]/15"></div>
+                    <!-- Golden Spiral/Lines -->
+                    <div class="absolute w-[280px] h-[280px] md:w-[340px] md:h-[340px] rounded-full border border-dashed border-gold/40 animate-spin-slow"></div>
+                    <!-- Light Pink Decorative Circle Offset -->
+                    <div class="absolute -top-4 right-10 w-24 h-24 rounded-full bg-blush/40 mix-blend-multiply filter blur-sm"></div>
+                    <!-- Decorative Dots Pattern Grid -->
+                    <div class="absolute top-10 right-20 grid grid-cols-4 gap-2 opacity-30">
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-gold"></div>
+                    </div>
+                </div>
+
+                <!-- Interactive Portrait Graphic Card -->
+                <div class="relative z-10 w-[280px] h-[360px] sm:w-[320px] sm:h-[420px] bg-stone-50 rounded-[40px] p-4 shadow-2xl border-4 border-stone-100 overflow-hidden transform hover:scale-[1.03] transition-all duration-500 group">
+                    <div class="relative w-full h-full bg-[#E5DAD6]/40 rounded-[28px] overflow-hidden flex flex-col justify-end items-center">
+                        
+                        <!-- Real Photo of Izal (WhatsApp Image 2026-06-30 at 01.40.02.jpeg) -->
+                        <img src="WhatsApp Image 2026-06-30 at 01.40.02.jpeg" 
+                             alt="Izal Profile Photo" 
+                             class="absolute inset-0 w-full h-full object-cover object-[center_15%] transition-transform duration-700 group-hover:scale-105"
+                             onerror="this.style.display='none'; const fb = document.getElementById('fallback-svg'); fb.classList.remove('hidden'); fb.classList.add('flex');">
+
+                        <!-- Fallback Premium Vector Art Avatar (Loaded only if image path fails) -->
+                        <div id="fallback-svg" class="absolute inset-0 hidden items-center justify-center pt-6">
+                            <svg class="w-4/5 h-4/5 text-moss" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 120 C 20 60, 180 60, 180 120 L 180 240 L 20 240 Z" fill="#2C3729" opacity="0.85"/>
+                                <circle cx="100" cy="120" r="45" stroke="#CBB57B" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.4" />
+                                <path d="M85 140 L 115 140 L 115 160 L 85 160 Z" fill="#E5DAD6" />
+                                <path d="M75 160 L 100 185 L 125 160 Z" fill="#CBB57B" />
+                                <path d="M50 160 C 50 160, 80 170, 100 170 C 120 170, 150 160, 150 160 L 165 240 L 35 240 Z" fill="#2C3729" />
+                                <path d="M50 160 L 85 240 L 100 180 L 115 240 L 150 160 Z" fill="#8C3F2F" opacity="0.9"/>
+                                <circle cx="100" cy="190" r="3" fill="#CBB57B" />
+                                <path d="M75 80 C 75 50, 125 50, 125 80 C 125 110, 115 135, 100 135 C 85 135, 75 110, 75 80 Z" fill="#F2ECE9" />
+                                <circle cx="72" cy="95" r="6" fill="#F2ECE9" />
+                                <circle cx="128" cy="95" r="6" fill="#F2ECE9" />
+                                <path d="M72 75 C 65 65, 80 40, 100 45 C 120 40, 135 65, 128 75 C 125 65, 110 55, 100 60 C 90 55, 75 65, 72 75 Z" fill="#1C241A" />
+                                <rect x="74" y="83" width="22" height="15" rx="4" stroke="#FAF6F0" stroke-width="2.5" fill="none" />
+                                <rect x="104" y="83" width="22" height="15" rx="4" stroke="#FAF6F0" stroke-width="2.5" fill="none" />
+                                <line x1="96" y1="88" x2="104" y2="88" stroke="#FAF6F0" stroke-width="2.5" />
+                                <circle cx="85" cy="90" r="2" fill="#1C241A" />
+                                <circle cx="115" cy="90" r="2" fill="#1C241A" />
+                                <path d="M92 110 Q 100 114 108 110" stroke="#1C241A" stroke-width="1.5" fill="none" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Interactive overlay panel -->
+                        <div class="absolute bottom-4 left-4 right-4 bg-stone-50/95 backdrop-blur-md rounded-2xl p-4 border border-mint/20 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-xs uppercase tracking-widest text-moss font-bold">Izal | Portfolio</h4>
+                                    <p class="text-[10px] text-gold-dark font-medium">Digital Business Student</p>
+                                </div>
+                                <span class="bg-moss text-[10px] text-stone-50 px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold group-hover:bg-gold group-hover:text-moss-dark transition-all duration-300">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divider text separator -->
+        <div class="flex items-center space-x-4 my-16 opacity-80" id="timeline">
+            <span class="h-[1px] flex-grow bg-gradient-to-r from-transparent to-mint"></span>
+            <span class="font-serif text-sm uppercase tracking-[0.4em] text-moss/50">Personal Statement Breakdown</span>
+            <span class="h-[1px] flex-grow bg-gradient-to-l from-transparent to-mint"></span>
+        </div>
+
+        <!-- Interactive Infographic Stack (Sections A to E) -->
+        <div class="space-y-8 max-w-4xl mx-auto">
+            
+            <!-- SECTION A -->
+            <div class="reveal group bg-stone-50 rounded-3xl border border-mint/30 shadow-sm hover:shadow-xl hover:border-gold/40 transition-all duration-500 overflow-hidden" id="section-a">
+                <div class="grid grid-cols-1 md:grid-cols-12">
+                    <!-- Left side Badge matching the design image -->
+                    <div class="md:col-span-3 bg-moss text-stone-50 p-6 flex flex-col justify-between items-center text-center space-y-4 md:space-y-0 min-h-[160px] md:min-h-full transition-colors duration-300 group-hover:bg-moss-light">
+                        <span class="text-4xl font-serif tracking-widest font-black text-gold">A</span>
+                        <!-- Circle Trophy Icon matching the image -->
+                        <div class="w-16 h-16 rounded-full border border-gold/40 bg-stone-50/10 flex items-center justify-center text-stone-50 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-trophy text-2xl text-gold"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-mint">Experience</span>
+                    </div>
+                    <!-- Right Content Area -->
+                    <div class="md:col-span-9 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-moss/50 mb-1">Section A</h3>
+                            <h2 class="text-xl sm:text-2xl font-serif text-moss font-bold group-hover:text-gold-dark transition-colors duration-300">
+                                EXPERIENCE OF SUCCESS
+                            </h2>
+                            <p class="text-sm text-moss/80 mt-4 leading-relaxed font-sans">
+                                My success is not measured solely by the final outcome, but by the courage to initiate <strong class="text-moss font-semibold underline decoration-gold decoration-2">‘Nevel Flow.’</strong> Although it is currently in the development phase, my success lies in my ability to identify the financial challenges faced by students and translate them into a technological solution. Successfully designing the UI/UX, mapping the system workflow, and building the prototype independently represents a significant milestone for me. This experience has taught me that the ability to initiate and remain consistent throughout the innovation process is a genuine form of success for a Digital Business student.
+                            </p>
+                        </div>
+                        <!-- Interactive Sub-system: Prototype Explorer mock -->
+                        <div class="pt-4 border-t border-stone-200/60 flex flex-wrap gap-3 items-center justify-between">
+                            <span class="text-xs text-moss/50 italic"><i class="fa-solid fa-layer-group text-gold mr-1"></i> Interactive Milestone: "Nevel Flow" UI/UX Prototype</span>
+                            <button onclick="openPrototypeDemo()" class="text-xs font-bold uppercase tracking-widest text-moss hover:text-gold transition-colors duration-200">
+                                View Wireframe Mockup <i class="fa-solid fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION B (With Dropdowns) -->
+            <div class="reveal group bg-stone-50 rounded-3xl border border-mint/30 shadow-sm hover:shadow-xl hover:border-gold/40 transition-all duration-500 overflow-hidden" id="section-b">
+                <div class="grid grid-cols-1 md:grid-cols-12">
+                    <!-- Left side Badge with Gold accents -->
+                    <div class="md:col-span-3 bg-gold text-moss p-6 flex flex-col justify-between items-center text-center space-y-4 md:space-y-0 min-h-[160px] md:min-h-full transition-colors duration-300 group-hover:bg-gold-light">
+                        <span class="text-4xl font-serif tracking-widest font-black text-moss-dark">B</span>
+                        <!-- Circle Person Icon matching the image -->
+                        <div class="w-16 h-16 rounded-full border border-moss/20 bg-moss/5 flex items-center justify-center text-moss shadow-inner group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-user-check text-2xl text-moss-dark"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-moss/70">Qualities</span>
+                    </div>
+                    <!-- Right Content Area -->
+                    <div class="md:col-span-9 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-moss/50 mb-1">Section B</h3>
+                            <h2 class="text-xl sm:text-2xl font-serif text-moss font-bold group-hover:text-gold-dark transition-colors duration-300">
+                                QUALITIES AND VALUES
+                            </h2>
+                            <p class="text-xs text-moss/50 mt-2 mb-4 italic"><i class="fa-solid fa-hand-pointer text-gold mr-1"></i> Click on any quality below to expand its detail:</p>
+                            
+                            <!-- Interactive Dropdown Grid/List -->
+                            <div class="space-y-3 mt-4">
+                                <!-- Qualities Dropdown 1 -->
+                                <div class="rounded-xl border border-mint/30 overflow-hidden bg-stone-100/50 hover:bg-gold/10 transition-colors duration-300">
+                                    <button onclick="toggleSubDropdown('b-creative', 'icon-b-creative')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss flex items-center gap-3">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-gold"></span> Creative & Storyteller
+                                        </h4>
+                                        <i id="icon-b-creative" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="b-creative" class="hidden px-6 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        Possess the ability to translate abstract ideas into meaningful visual content. Dedicated to crafting strategies that build a timeless bond between innovation and core consumer values.
+                                    </div>
+                                </div>
+
+                                <!-- Qualities Dropdown 2 -->
+                                <div class="rounded-xl border border-mint/30 overflow-hidden bg-stone-100/50 hover:bg-gold/10 transition-colors duration-300">
+                                    <button onclick="toggleSubDropdown('b-adaptive', 'icon-b-adaptive')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss flex items-center gap-3">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-gold"></span> Adaptive
+                                        </h4>
+                                        <i id="icon-b-adaptive" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="b-adaptive" class="hidden px-6 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        Highly capable of adapting to emerging technological trends and the dynamic nature of the digital transformation era. Quickly translates structural and tool-based updates into action pathways.
+                                    </div>
+                                </div>
+
+                                <!-- Qualities Dropdown 3 -->
+                                <div class="rounded-xl border border-mint/30 overflow-hidden bg-stone-100/50 hover:bg-gold/10 transition-colors duration-300">
+                                    <button onclick="toggleSubDropdown('b-techno', 'icon-b-techno')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss flex items-center gap-3">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-gold"></span> Technopreneurial Mindset
+                                        </h4>
+                                        <i id="icon-b-techno" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="b-techno" class="hidden px-6 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        Driven by a passion to innovate and generate economic value through technology. Focused on aligning operational frameworks with sustainable community growth and efficient project implementation.
+                                    </div>
+                                </div>
+
+                                <!-- Qualities Dropdown 4 -->
+                                <div class="rounded-xl border border-mint/30 overflow-hidden bg-stone-100/50 hover:bg-gold/10 transition-colors duration-300">
+                                    <button onclick="toggleSubDropdown('b-enfp', 'icon-b-enfp')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss flex items-center gap-3">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-gold"></span> Empathic (ENFP)
+                                        </h4>
+                                        <i id="icon-b-enfp" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="b-enfp" class="hidden px-6 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        Known as 'The Campaigner'—a creative, enthusiastic, and highly sociable individual. I am adept at recognizing the potential in others and always strive to find deeper meaning in every aspect of life.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-stone-200/60 flex items-center justify-between">
+                            <span class="text-xs text-moss/50 italic"><i class="fa-solid fa-magnifying-glass-chart text-gold mr-1"></i> Interactive ENFP Analysis Clickable Overview</span>
+                            <button onclick="toggleENFPModal()" class="text-xs font-bold uppercase tracking-widest text-moss hover:text-gold transition-colors duration-200">
+                                More about ENFP Personality <i class="fa-solid fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION C (With Dropdowns) -->
+            <div class="reveal group bg-stone-50 rounded-3xl border border-mint/30 shadow-sm hover:shadow-xl hover:border-gold/40 transition-all duration-500 overflow-hidden" id="section-c">
+                <div class="grid grid-cols-1 md:grid-cols-12">
+                    <!-- Left side Badge with Mint accents -->
+                    <div class="md:col-span-3 bg-mint text-moss p-6 flex flex-col justify-between items-center text-center space-y-4 md:space-y-0 min-h-[160px] md:min-h-full transition-colors duration-300 group-hover:bg-mint-light">
+                        <span class="text-4xl font-serif tracking-widest font-black text-moss-dark">C</span>
+                        <!-- Circle Globe Icon matching the image -->
+                        <div class="w-16 h-16 rounded-full border border-moss/20 bg-moss/5 flex items-center justify-center text-moss shadow-inner group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-globe text-2xl text-moss-dark"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-moss/70">Contributions</span>
+                    </div>
+                    <!-- Right Content Area -->
+                    <div class="md:col-span-9 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-moss/50 mb-1">Section C</h3>
+                            <h2 class="text-xl sm:text-2xl font-serif text-moss font-bold group-hover:text-gold-dark transition-colors duration-300">
+                                CONTRIBUTIONS TO THE WORLD AND EMPLOYERS
+                            </h2>
+                            <p class="text-xs text-moss/50 mt-2 mb-4 italic"><i class="fa-solid fa-hand-pointer text-gold mr-1"></i> Click on any contribution target to view strategic details:</p>
+                            
+                            <div class="space-y-3 mt-4">
+                                <!-- Contribution 1 -->
+                                <div class="rounded-xl border border-mint/30 overflow-hidden bg-stone-100/50 hover:bg-mint/20 transition-colors duration-300">
+                                    <button onclick="toggleSubDropdown('c-literacy', 'icon-c-literacy')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss flex items-center gap-3">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-gold"></span> Digital Literacy
+                                        </h4>
+                                        <i id="icon-c-literacy" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="c-literacy" class="hidden px-6 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        I aim to contribute by simplifying access to financial literacy through practical, efficient technology for students and small business owners. Transforming heavy financial theory into easily-digestible modules.
+                                    </div>
+                                </div>
+
+                                <!-- Contribution 2 -->
+                                <div class="rounded-xl border border-mint/30 overflow-hidden bg-stone-100/50 hover:bg-mint/20 transition-colors duration-300">
+                                    <button onclick="toggleSubDropdown('c-storytelling', 'icon-c-storytelling')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss flex items-center gap-3">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-gold"></span> Strategic Storytelling
+                                        </h4>
+                                        <i id="icon-c-storytelling" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="c-storytelling" class="hidden px-6 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        As a professional, I seek to contribute by implementing marketing strategies that foster emotional connections between brands and consumers, thereby enhancing customer loyalty.
+                                    </div>
+                                </div>
+
+                                <!-- Contribution 3 -->
+                                <div class="rounded-xl border border-mint/30 overflow-hidden bg-stone-100/50 hover:bg-mint/20 transition-colors duration-300">
+                                    <button onclick="toggleSubDropdown('c-efficiency', 'icon-c-efficiency')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss flex items-center gap-3">
+                                            <span class="w-2.5 h-2.5 rounded-full bg-gold"></span> Efficiency and Innovation
+                                        </h4>
+                                        <i id="icon-c-efficiency" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="c-efficiency" class="hidden px-6 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        For employers, I am committed to bringing innovative approaches and operational efficiency, mirroring the methods I have applied in the digitalization of MSME assistance programs.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-stone-200/60 flex items-center justify-between">
+                            <span class="text-xs text-moss/50 italic"><i class="fa-solid fa-seedling text-gold mr-1"></i> Interactive Contribution Impact Goal</span>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs font-semibold text-moss">Digitalization Support:</span>
+                                <span class="bg-gold/20 text-gold-dark text-[10px] px-2.5 py-0.5 rounded-full font-bold">100% Committed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION D (With Dropdowns) -->
+            <div class="reveal group bg-stone-50 rounded-3xl border border-mint/30 shadow-sm hover:shadow-xl hover:border-gold/40 transition-all duration-500 overflow-hidden" id="section-d">
+                <div class="grid grid-cols-1 md:grid-cols-12">
+                    <!-- Left side Badge with Blush accents -->
+                    <div class="md:col-span-3 bg-blush text-moss p-6 flex flex-col justify-between items-center text-center space-y-4 md:space-y-0 min-h-[160px] md:min-h-full transition-colors duration-300 group-hover:bg-blush-light">
+                        <span class="text-4xl font-serif tracking-widest font-black text-moss-dark">D</span>
+                        <!-- Circle Mountain Icon matching the image -->
+                        <div class="w-16 h-16 rounded-full border border-moss/20 bg-moss/5 flex items-center justify-center text-moss shadow-inner group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-mountain-sun text-2xl text-moss-dark"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-moss/70">Goals</span>
+                    </div>
+                    <!-- Right Content Area -->
+                    <div class="md:col-span-9 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-moss/50 mb-1">Section D</h3>
+                            <h2 class="text-xl sm:text-2xl font-serif text-moss font-bold group-hover:text-gold-dark transition-colors duration-300">
+                                PERSONAL GOALS
+                            </h2>
+                            <p class="text-xs text-moss/50 mt-2 mb-4 italic"><i class="fa-solid fa-hand-pointer text-gold mr-1"></i> Click on any timeline stage to expand details:</p>
+                            
+                            <!-- Premium Steps Timeline representing D section goals -->
+                            <div class="relative pl-6 border-l border-gold/40 space-y-4 mt-4">
+                                <!-- Step 1 -->
+                                <div class="relative rounded-xl border border-mint/20 overflow-hidden bg-stone-100/50 hover:bg-blush/20 transition-colors duration-300">
+                                    <span class="absolute -left-[31px] top-4 bg-gold text-stone-50 w-4 h-4 rounded-full border-4 border-stone-50 flex items-center justify-center"></span>
+                                    <button onclick="toggleSubDropdown('d-short', 'icon-d-short')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss-light">Short-term <span class="text-[11px] font-normal text-moss/50">(Immediate Focus)</span></h4>
+                                        <i id="icon-d-short" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="d-short" class="hidden px-4 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        Complete the development of the MVP (Minimum Viable Product) for Nevel Flow. Finalize the interface feedback integration and connect localized scholarship/subsidy databases.
+                                    </div>
+                                </div>
+                                <!-- Step 2 -->
+                                <div class="relative rounded-xl border border-mint/20 overflow-hidden bg-stone-100/50 hover:bg-blush/20 transition-colors duration-300">
+                                    <span class="absolute -left-[31px] top-4 bg-gold text-stone-50 w-4 h-4 rounded-full border-4 border-stone-50 flex items-center justify-center"></span>
+                                    <button onclick="toggleSubDropdown('d-medium', 'icon-d-medium')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss-light">Medium-term <span class="text-[11px] font-normal text-moss/50">(Academic & Content)</span></h4>
+                                        <i id="icon-d-medium" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="d-medium" class="hidden px-4 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        Graduate on time from the Digital Business bachelor's program with excellent results and strengthen my personal branding as a Content Creator focusing on student-focused tech resources.
+                                    </div>
+                                </div>
+                                <!-- Step 3 -->
+                                <div class="relative rounded-xl border border-mint/20 overflow-hidden bg-stone-100/50 hover:bg-blush/20 transition-colors duration-300">
+                                    <span class="absolute -left-[31px] top-4 bg-gold text-stone-50 w-4 h-4 rounded-full border-4 border-stone-50 flex items-center justify-center"></span>
+                                    <button onclick="toggleSubDropdown('d-long', 'icon-d-long')" class="w-full flex items-center justify-between p-4 focus:outline-none text-left">
+                                        <h4 class="font-bold text-sm text-moss-light">Long-term <span class="text-[11px] font-normal text-moss/50">(Lifestyle & Entrepreneurship)</span></h4>
+                                        <i id="icon-d-long" class="fa-solid fa-chevron-down text-moss/40 text-xs transition-transform duration-300"></i>
+                                    </button>
+                                    <div id="d-long" class="hidden px-4 pb-4 pt-1 text-xs sm:text-sm text-moss/75 border-t border-mint/10 bg-white/40">
+                                        Achieve a digital nomad lifestyle that allows me to travel the world while continuously creating, mentoring, and building my digital business and technology startups.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-stone-200/60 flex items-center justify-between">
+                            <span class="text-xs text-moss/50 italic"><i class="fa-solid fa-map-location-dot text-gold mr-1"></i> Interactive Roadmap Progress Tracking</span>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span class="text-xs font-bold text-moss">On Track for Graduation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION E & MOTTO -->
+            <div class="reveal group bg-[#2C3729] text-stone-50 rounded-3xl border border-moss-dark shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden" id="section-e">
+                <div class="grid grid-cols-1 md:grid-cols-12">
+                    <!-- Left side Badge with Gold accents -->
+                    <div class="md:col-span-3 bg-moss-dark p-6 flex flex-col justify-between items-center text-center space-y-4 md:space-y-0 min-h-[160px] md:min-h-full transition-colors duration-300">
+                        <span class="text-4xl font-serif tracking-widest font-black text-gold">E</span>
+                        <!-- Circle Quote Icon matching the image -->
+                        <div class="w-16 h-16 rounded-full border border-gold/40 bg-stone-50/10 flex items-center justify-center text-stone-50 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                            <i class="fa-solid fa-quote-left text-2xl text-gold"></i>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-gold">Slogan</span>
+                    </div>
+                    <!-- Right Content Area -->
+                    <div class="md:col-span-9 p-8 flex flex-col justify-between space-y-6">
+                        <div>
+                            <h3 class="text-xs uppercase tracking-[0.2em] font-bold text-gold/60 mb-1">Section E</h3>
+                            <h2 class="text-xl sm:text-2xl font-serif text-stone-50 font-bold">
+                                MOTTO OR SLOGAN
+                            </h2>
+                            <!-- Slogan Highlight Box -->
+                            <div class="mt-8 border-l-4 border-gold pl-6 py-2">
+                                <p id="motto-text" class="text-2xl sm:text-3xl font-serif italic text-stone-50 leading-relaxed font-normal tracking-wide">
+                                    ‘The world is my canvas, I dictate the strokes.’
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Canvas Interaction Call to Action button directly inside Section E -->
+                        <div class="pt-4 border-t border-stone-700 flex flex-wrap gap-4 items-center justify-between">
+                            <span class="text-xs text-stone-400 italic"><i class="fa-solid fa-wand-magic-sparkles text-gold mr-1"></i> Put the motto to reality: click to start dictating the strokes!</span>
+                            <button onclick="openCanvasModal()" class="bg-gold hover:bg-gold-light text-moss-dark font-bold text-xs uppercase tracking-widest px-5 py-2.5 rounded-xl transition-all duration-300 shadow-md">
+                                Test Canvas strokes now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Interactive Creative Draw Canvas Section -->
+        <section class="max-w-4xl mx-auto my-20 bg-stone-100 rounded-3xl border border-mint/40 p-6 sm:p-8 shadow-inner relative overflow-hidden reveal">
+            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+                <i class="fa-solid fa-paintbrush text-9xl text-moss"></i>
+            </div>
+            
+            <div class="relative z-10 space-y-4 mb-6">
+                <span class="bg-gold/20 text-gold-dark text-xs uppercase tracking-widest px-3 py-1 rounded-full font-bold">Interactive Module</span>
+                <h2 class="text-2xl font-serif text-moss font-bold">Canvas Generator: "I dictate the strokes"</h2>
+                <p class="text-sm text-moss/70 max-w-2xl">
+                    In alignment with Izal's motto, we invite you to express your vision. Drag or tap your mouse on the canvas area below to generate elegant modern art strokes in our official theme colors.
+                </p>
+            </div>
+
+            <!-- Canvas Container with select-none to prevent accidental text highlighting -->
+            <div class="bg-stone-50 rounded-2xl border-2 border-dashed border-mint overflow-hidden relative group select-none">
+                <canvas id="canvas-pad" class="w-full h-80 bg-stone-50 block cursor-crosshair" title="Interactive Drawing Canvas"></canvas>
+                
+                <!-- Floating Instructions overlay when empty (permanently has pointer-events-none so it never intercepts drawing clicks) -->
+                <div id="canvas-hint" class="absolute inset-0 flex flex-col justify-center items-center text-center bg-stone-50/70 backdrop-blur-[2px] pointer-events-none transition-opacity duration-300">
+                    <i class="fa-solid fa-signature text-3xl text-gold animate-bounce mb-2"></i>
+                    <p class="text-sm font-semibold text-moss">Click and drag inside this box to create your strokes</p>
+                    <p class="text-xs text-moss/50">Colors auto-cycle through Moss Green, Warm Gold, and Blush Pink</p>
+                </div>
+            </div>
+
+            <!-- Canvas Controls -->
+            <div class="flex flex-wrap gap-3 mt-4 justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <span class="text-xs font-semibold text-moss/60">Current Stroke style:</span>
+                    <select id="canvas-brush" class="bg-stone-50 border border-mint/60 text-xs rounded-lg px-3 py-1.5 text-moss font-semibold focus:outline-none focus:ring-1 focus:ring-gold">
+                        <option value="calligraphy">Gold Elegant Calligraphy</option>
+                        <option value="rainbow">Signature Swatches Path</option>
+                        <option value="spray">Digital Business Spray</option>
+                    </select>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="clearCanvas()" class="border border-mint bg-stone-50 hover:bg-stone-200 text-moss text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-xl transition duration-200">
+                        <i class="fa-solid fa-eraser mr-1"></i> Clear Canvas
+                    </button>
+                    <button onclick="downloadCanvasArtwork()" class="bg-moss hover:bg-gold text-stone-50 hover:text-moss-dark text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-xl transition duration-200 shadow">
+                        <i class="fa-solid fa-download mr-1"></i> Save Stroke Art
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Interactive Modals / Information Drawers -->
+    
+    <!-- 1. ENFP CAMPAIGNER INFO MODAL -->
+    <div id="enfp-modal" class="fixed inset-0 bg-moss/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4 transition-all duration-300">
+        <div class="bg-stone-50 max-w-lg w-full rounded-3xl overflow-hidden shadow-2xl border border-mint/30 transform scale-95 transition-transform duration-300" id="enfp-content">
+            <div class="bg-moss p-6 text-stone-50 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl font-serif text-gold font-bold">ENFP</span>
+                    <span class="text-xs bg-gold/20 text-gold px-2.5 py-0.5 rounded-full font-bold">Personality Analysis</span>
+                </div>
+                <button onclick="toggleENFPModal()" class="text-stone-50/60 hover:text-stone-50 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <h3 class="font-serif text-xl font-bold text-moss">The Campaigner (ENFP-T / ENFP-A)</h3>
+                <p class="text-sm text-moss-light leading-relaxed">
+                    As an ENFP, Izal belongs to a vibrant family of personalities known for their warmth, enthusiasm, and unstoppable creative force. In a professional digital environment, this translates to:
+                </p>
+                <div class="space-y-3">
+                    <div class="flex gap-2">
+                        <i class="fa-solid fa-lightbulb text-gold mt-1"></i>
+                        <p class="text-xs text-moss-light"><strong class="text-moss">Vast Ideation:</strong> Natural brainstormers who easily spot connections between customer pain points and tech solutions.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <i class="fa-solid fa-people-arrows text-gold mt-1"></i>
+                        <p class="text-xs text-moss-light"><strong class="text-moss">Empathic Outreach:</strong> Exceptional emotional intelligence that fuels authentic strategic storytelling.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <i class="fa-solid fa-rocket text-gold mt-1"></i>
+                        <p class="text-xs text-moss-light"><strong class="text-moss">Optimistic Leadership:</strong> Capable of championing digital tools (like Nevel Flow) to lift up community MSMEs and fellow students.</p>
+                    </div>
+                </div>
+                <div class="bg-gold/10 p-4 rounded-xl border border-gold/30 text-xs text-gold-dark italic">
+                    "Campaigners value freedom, creativity, and deeper purpose. They are true catalysts for digital adaptation."
+                </div>
+            </div>
+            <div class="bg-stone-100 px-6 py-4 flex justify-end">
+                <button onclick="toggleENFPModal()" class="bg-moss hover:bg-gold text-stone-50 hover:text-moss-dark text-xs uppercase tracking-widest font-bold px-4 py-2 rounded-lg transition-colors">Close Overview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. NEVEL FLOW WIREFRAME DEMO MODAL -->
+    <div id="proto-modal" class="fixed inset-0 bg-moss/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4 transition-all duration-300">
+        <div class="bg-stone-50 max-w-xl w-full rounded-3xl overflow-hidden shadow-2xl border border-mint/30 transform scale-95 transition-transform duration-300" id="proto-content">
+            <div class="bg-[#2C3729] p-6 text-stone-50 flex justify-between items-center">
+                <div>
+                    <h3 class="font-serif text-lg font-bold text-gold">Nevel Flow Design Prototype</h3>
+                    <p class="text-[10px] text-mint uppercase tracking-widest">Designed independently by Izal</p>
+                </div>
+                <button onclick="openPrototypeDemo()" class="text-stone-50/60 hover:text-stone-50 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="p-6 space-y-6">
+                <!-- Mock Mobile Wireframe Interface -->
+                <div class="flex gap-4 items-center">
+                    <div class="w-1/3 bg-stone-100 rounded-2xl border border-mint/40 p-3 shadow relative overflow-hidden">
+                        <div class="w-full h-2 bg-moss/30 rounded-full mb-4"></div>
+                        <div class="space-y-2">
+                            <div class="h-6 bg-gold/20 rounded-lg flex items-center justify-center text-[8px] font-bold text-gold-dark">Flow Balance</div>
+                            <div class="h-4 bg-mint/20 rounded-lg"></div>
+                            <div class="h-4 bg-mint/20 rounded-lg"></div>
+                            <div class="h-10 bg-moss/10 rounded-lg flex items-center justify-center"><i class="fa-solid fa-chart-line text-xs text-moss"></i></div>
+                        </div>
+                    </div>
+                    <div class="w-2/3 space-y-3">
+                        <h4 class="font-bold text-sm text-moss">Independent UI/UX Concept</h4>
+                        <p class="text-xs text-moss/70 leading-relaxed">
+                            "Nevel Flow" addresses the financial strain on students. It provides a visual ecosystem to plan daily allowance, micro-savings, and track local student discounts.
+                        </p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="bg-stone-100 p-2.5 rounded-lg border border-mint/20 text-center">
+                                <span class="block text-xs font-bold text-moss">UI Elements</span>
+                                <span class="text-[10px] text-moss/50">Completed independently</span>
+                            </div>
+                            <div class="bg-stone-100 p-2.5 rounded-lg border border-mint/20 text-center">
+                                <span class="block text-xs font-bold text-moss">Workflow Mapping</span>
+                                <span class="text-[10px] text-moss/50">Designed in Figma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-stone-100 p-4 rounded-xl border border-mint/40 text-xs">
+                    <h5 class="font-bold text-moss mb-1">Students Financial Solved Statement</h5>
+                    <p class="text-moss/70">"Courage is to initiate even when in development. I built the prototype independently as an educational roadmap."</p>
+                </div>
+            </div>
+            <div class="bg-stone-100 px-6 py-4 flex justify-end">
+                <button onclick="openPrototypeDemo()" class="bg-moss text-stone-50 hover:bg-gold hover:text-moss-dark text-xs uppercase tracking-widest font-bold px-4 py-2 rounded-lg transition-colors">Understood</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer aligned with original design concept -->
+    <footer class="bg-[#2C3729] text-stone-50 py-16 px-6 relative overflow-hidden">
+        <!-- Abstract Gold Lines Decoration -->
+        <div class="absolute inset-x-0 bottom-0 h-1 bg-gold"></div>
+        <div class="absolute -bottom-10 right-10 w-48 h-48 rounded-full border border-gold/10 pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto flex flex-col items-center justify-center text-center space-y-8 relative z-10">
+            <!-- Footer Motto Links -->
+            <div class="flex flex-wrap items-center justify-center gap-4 text-xs uppercase tracking-[0.4em] text-gold font-bold">
+                <span>CREATE</span>
+                <span class="text-stone-50/30">•</span>
+                <span>INSPIRE</span>
+                <span class="text-stone-50/30">•</span>
+                <span>IMPACT</span>
+            </div>
+
+            <!-- Back to top icon button -->
+            <a href="#" class="w-10 h-10 rounded-full border border-gold/40 hover:border-gold bg-stone-50/5 flex items-center justify-center text-gold hover:text-stone-50 hover:bg-stone-50/10 transition-all duration-300">
+                <i class="fa-solid fa-arrow-up"></i>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Main JS Functionality -->
+    <script>
+        // Speech synthesis global control
+        let isSpeaking = false;
+        let speechUtterance = null;
+
+        function toggleSpeech() {
+            const speakerIcon = document.getElementById('speaker-icon');
+            const speakerText = document.getElementById('speaker-text');
+
+            if (!('speechSynthesis' in window)) {
+                alert("Speech Synthesis is not supported in your browser.");
+                return;
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                speakerIcon.className = "fa-solid fa-volume-high";
+                speakerText.innerText = "Listen to Statement";
+            } else {
+                // Combine statement fields to speak elegantly
+                const textToRead = "Speaking Project: Personal Statement. Izal. Elevated and Timeless. " + 
+                    "Turning ideas into impact through creativity, empathy, and technology. " +
+                    "Experience of Success: My success is not measured solely by the final outcome, but by the courage to initiate 'Nevel Flow.' " +
+                    "Qualities and Values: Creative and Storyteller, Adaptive, Technopreneurial Mindset, and Empathic ENFP. " +
+                    "Contributions: Digital Literacy, Strategic Storytelling, and Efficiency and Innovation. " +
+                    "Personal Goals: Complete Nevel Flow MVP, Graduate on time, and Achieve a digital nomad lifestyle. " +
+                    "Motto or Slogan: The world is my canvas, I dictate the strokes.";
+
+                speechUtterance = new SpeechSynthesisUtterance(textToRead);
+                speechUtterance.rate = 1.0;
+                speechUtterance.pitch = 1.0;
+                
+                // Seek a premium or default English voice if possible
+                const voices = window.speechSynthesis.getVoices();
+                const englishVoice = voices.find(voice => voice.lang.includes('en') && voice.name.includes('Natural')) || voices[0];
+                if (englishVoice) speechUtterance.voice = englishVoice;
+
+                speechUtterance.onend = () => {
+                    isSpeaking = false;
+                    speakerIcon.className = "fa-solid fa-volume-high";
+                    speakerText.innerText = "Listen to Statement";
+                };
+
+                speechUtterance.onerror = () => {
+                    isSpeaking = false;
+                    speakerIcon.className = "fa-solid fa-volume-high";
+                    speakerText.innerText = "Listen to Statement";
+                };
+
+                isSpeaking = true;
+                speakerIcon.className = "fa-solid fa-stop-circle text-gold animate-pulse";
+                speakerText.innerText = "Playing Audio (Click to stop)";
+                window.speechSynthesis.speak(speechUtterance);
+            }
+        }
+
+        // Initialize Web Speech synthesis voices list dynamically
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                // Triggers loading of voices ready for utilization
+            };
+        }
+
+        // Scroll Reveal Activation via IntersectionObserver
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealElements = document.querySelectorAll(".reveal");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Initialize Drawing Canvas Logic
+            setupCanvasEngine();
+        });
+
+        // Toggle Modals
+        function toggleENFPModal() {
+            const modal = document.getElementById('enfp-modal');
+            const content = document.getElementById('enfp-content');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => content.classList.remove('scale-95'), 50);
+            } else {
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 150);
+            }
+        }
+
+        function openPrototypeDemo() {
+            const modal = document.getElementById('proto-modal');
+            const content = document.getElementById('proto-content');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => content.classList.remove('scale-95'), 50);
+            } else {
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 150);
+            }
+        }
+
+        // Interactive Dropdown Trigger for Poin-Poin (Internal Sections)
+        function toggleSubDropdown(id, iconId) {
+            const element = document.getElementById(id);
+            const icon = document.getElementById(iconId);
+            
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.classList.add('block');
+                if (icon) {
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            } else {
+                element.classList.add('hidden');
+                element.classList.remove('block');
+                if (icon) {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        }
+
+        // Custom canvas painting variables
+        let canvas, ctx;
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let strokeColorIndex = 0;
+        const strokeColors = ['#CBB57B', '#2C3729', '#E5DAD6', '#C3C9C0'];
+
+        function setupCanvasEngine() {
+            canvas = document.getElementById('canvas-pad');
+            ctx = canvas.getContext('2d');
+            const hint = document.getElementById('canvas-hint');
+
+            // Responsive resizing
+            function resizeCanvas() {
+                const rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+                // Redraw a soft aesthetic grid/dots inside canvas on resize
+                drawCanvasGrid();
+            }
+
+            // Setup listeners
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseout', stopDrawing);
+
+            // Mobile Touch support
+            canvas.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0];
+                startDrawing(touch);
+            });
+            canvas.addEventListener('touchmove', (e) => {
+                const touch = e.touches[0];
+                draw(touch);
+                e.preventDefault();
+            });
+            canvas.addEventListener('touchend', stopDrawing);
+
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+        }
+
+        function drawCanvasGrid() {
+            ctx.fillStyle = '#FAF6F0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(44, 55, 41, 0.05)';
+            for (let x = 10; x < canvas.width; x += 20) {
+                for (let y = 10; y < canvas.height; y += 20) {
+                    ctx.fillRect(x, y, 2, 2);
+                }
+            }
+        }
+
+        function startDrawing(e) {
+            // Prevent default browser text selection/drag behaviors on touch and click
+            if (e.cancelable) e.preventDefault();
+            isDrawing = true;
+            const coords = getCoords(e);
+            [lastX, lastY] = [coords.x, coords.y];
+            
+            // Hide the instructions hint overlay by simply making it fully transparent
+            const hint = document.getElementById('canvas-hint');
+            if (hint) hint.classList.add('opacity-0');
+        }
+
+        function getCoords(e) {
+            const rect = canvas.getBoundingClientRect();
+            // Works reliably for both MouseEvent and Touch events
+            const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : e.pageX);
+            const clientY = e.clientY || (e.touches && e.touches[0] ? e.touches[0].clientY : e.pageY);
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            // Prevent page scrolling and text selection while drawing
+            if (e.cancelable) e.preventDefault();
+            const coords = getCoords(e);
+            const currentX = coords.x;
+            const currentY = coords.y;
+
+            const brushStyle = document.getElementById('canvas-brush').value;
+
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(currentX, currentY);
+
+            // Cycle through colors
+            const color = strokeColors[strokeColorIndex];
+            ctx.strokeStyle = color;
+
+            if (brushStyle === 'calligraphy') {
+                ctx.lineWidth = Math.abs(currentX - lastX) + 3; // Variable elegant width
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.stroke();
+            } else if (brushStyle === 'rainbow') {
+                ctx.lineWidth = 4;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                // cycle index
+                strokeColorIndex = (strokeColorIndex + 1) % strokeColors.length;
+            } else if (brushStyle === 'spray') {
+                // Digital spray technique
+                ctx.lineWidth = 1;
+                for (let i = 0; i < 20; i++) {
+                    const offset = getRandomOffset(12);
+                    ctx.fillStyle = color;
+                    ctx.fillRect(currentX + offset.x, currentY + offset.y, 1.5, 1.5);
+                }
+            }
+
+            [lastX, lastY] = [currentX, currentY];
+        }
+
+        function getRandomOffset(radius) {
+            const r = Math.random() * radius;
+            const angle = Math.random() * Math.PI * 2;
+            return {
+                x: Math.cos(angle) * r,
+                y: Math.sin(angle) * r
+            };
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawCanvasGrid();
+            // Show hint again by removing opacity-0 (and safely maintaining pointer-events-none)
+            const hint = document.getElementById('canvas-hint');
+            if (hint) hint.classList.remove('opacity-0');
+        }
+
+        function downloadCanvasArtwork() {
+            // Trigger image download
+            const imageURI = canvas.toDataURL("image/png");
+            const link = document.createElement("a");
+            link.download = "izal_stroke_canvas_masterpiece.png";
+            link.href = imageURI;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Open Canvas Drawing dialog easily
+        function openCanvasModal() {
+            const canvasSection = document.getElementById('canvas-pad');
+            canvasSection.scrollIntoView({ behavior: 'smooth' });
+            // Add momentary highlight
+            canvasSection.parentElement.classList.add('ring-4', 'ring-gold', 'ring-opacity-50');
+            setTimeout(() => {
+                canvasSection.parentElement.classList.remove('ring-4', 'ring-gold', 'ring-opacity-50');
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
